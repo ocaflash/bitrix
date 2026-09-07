@@ -1,2 +1,3 @@
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl wget unzip gnupg2 software-properties-common ca-certificates
+apt install -y php8.4-ldap php8.4-memcached memcached
+systemctl restart php8.4-fpm
