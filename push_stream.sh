@@ -1,6 +1,25 @@
-curl -fsSL https://extras.getpagespeed.com/deb/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/getpagespeed.gpg
-echo "deb [signed-by=/usr/share/keyrings/getpagespeed.gpg] https://extras.getpagespeed.com/debian trixie main" | sudo tee /etc/apt/sources.list.d/getpagespeed.list
-sudo apt update
-sudo apt install -y nginx nginx-module-push-stream
-nginx -V 2>&1 | grep -i push
-ls -l /usr/lib/nginx/modules/ngx_http_push_stream_module.so
+return array (
+'pull' => Array(
+    'value' =>  array(
+        'path_to_listener' => 'http://#DOMAIN#/bitrix/sub/',
+        'path_to_listener_secure' => 'https://#DOMAIN#/bitrix/sub/',
+        'path_to_modern_listener' => 'http://#DOMAIN#/bitrix/sub/',
+        'path_to_modern_listener_secure' => 'https://#DOMAIN#/bitrix/sub/',
+        'path_to_mobile_listener' => 'http://#DOMAIN#:8893/bitrix/sub/',
+        'path_to_mobile_listener_secure' => 'https://#DOMAIN#:8894/bitrix/sub/',
+        'path_to_websocket' => 'ws://#DOMAIN#/bitrix/subws/',
+        'path_to_websocket_secure' => 'wss://#DOMAIN#/bitrix/subws/',
+	'path_to_publish' => 'http://localhost:8895/bitrix/pub/',
+        'path_to_publish_web' => 'http://#DOMAIN#/bitrix/rest/',
+        'path_to_publish_web_secure' => 'https://#DOMAIN#/bitrix/rest/',
+        'nginx_version' => '4',
+        'nginx_command_per_hit' => '100',
+        'nginx' => 'Y',
+        'nginx_headers' => 'N',
+        'push' => 'Y',
+        'websocket' => 'Y',
+        'signature_key' => 'PUTTHEPRIVATEKEYHERE',
+        'signature_algo' => 'sha1',
+        'guest' => 'N',
+    ),
+),
