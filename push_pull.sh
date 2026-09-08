@@ -1,7 +1,6 @@
-ln -sf /opt/node_modules/push-server/etc/push-server /etc/push-server
-cd /opt/node_modules/push-server
-cp /etc/init.d/push-server-multi /usr/local/bin/push-server-multi
-mkdir /etc/sysconfig
-cp /etc/sysconfig/push-server-multi  /etc/sysconfig/push-server-multi
-cp /etc/push-server/push-server.service  /etc/systemd/system/
-ln -sf /opt/node_modules/push-server /opt/push-server
+cat /dev/urandom |tr -dc A-Za-z0-9 | head -c 128
+
+GROUP=web1-client0
+SECURITY_KEY="kv2UTopYxfLSW9PMOFjyOamQQD5WU7NMPlsM7FelBf9QBIxBbYztNFapClXpf3Gp9i7XptX72rU2nFyNcBhUtQCgODqmzmQmfdXXPcHA98lkOUY3NyqCYNKocXmw5EAw"
+RUN_DIR=/tmp/push-server
+REDIS_SOCK=/run/redis/redis.sock
