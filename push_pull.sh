@@ -1,17 +1,11 @@
-cat /dev/urandom |tr -dc A-Za-z0-9 | head -c 128
+[[ ! -d /var/log/push-server ]] && mkdir /var/log/push-server
+chown web1:client0 /var/log/push-server
 
-В /etc/sysconfig/push-server-multi ставим:
+/usr/local/bin/push-server-multi configs pub
+/usr/local/bin/push-server-multi configs sub
 
-USER=web1
-GROUP=client0
-SECURITY_KEY="kv2UTopYxfLSW9PMOFjyOamQQD5WU7NMPlsM7FelBf9QBIxBbYztNFapClXpf3Gp9i7XptX72rU2nFyNcBhUtQCgODqmzmQmfdXXPcHA98lkOUY3NyqCYNKocXmw5EAw"
-RUN_DIR=/tmp/push-server
-REDIS_SOCK=/run/redis/redis.sock
+echo 'd /tmp/push-server 0770 web1 client0 -' > /etc/tmpfiles.d/push-server.conf
+systemd-tmpfiles --remove --create
 
-А в /etc/systemd/system/push-server.service:
-
-[Service]
-User=web1
-Group=client0
-ExecStart=/usr/local/bin/push-server-multi systemd_start
-ExecStop=/usr/local/bin/push-server-multi stop
+systemctl daemon-reload
+systemctl --now enable push-server
